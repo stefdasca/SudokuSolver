@@ -15,14 +15,14 @@ At first, I am using an algorithm based on a few sudoku strategies which fill as
 * Add notes at the beginning (i. e: mark all the possible squares with all the possible digits according to the rules of sudoku)
 * While the sudoku is not completed, do the following:
     1. Whenever one of these situations occurs, fill the square with the number which fits the description
-        1. If in a 3*3 grid there is only one position with a certain number, fill it
-        2. If in a 1*9 grid there is only one position with a certain number, fill it
-        3. If in a 9*1 grid there is only one position with a certain number, fill it
+        1. If in a 3x3 grid there is only one position with a certain number, fill it
+        2. If in a 1x9 grid there is only one position with a certain number, fill it
+        3. If in a 9x1 grid there is only one position with a certain number, fill it
     2. Notes reduction
-        1. After completing each square, remove all the notes with that value on the 3*3, 1*9 and 9*1 grids 
-        2. If in a 3*3 grid there is only one row/column with a certain number, remove it from the other 3*3 from the same row/column
-        3. If in a 3*3, 1*9, 9*1 grid there is a case where the size of a set is equal to the number of empty slots, remove the numbers from the other slots from 3*3 and 1*9/9*1 grids, depending on the case
-        4. If in a 3*3, 1*9, 9*1 grid there is a case where the size of a set is equal to the number of empty slots the numbers show up, remove the numbers from the other slots from 3*3 and 1*9/9*1 grids, depending on the case
+        1. After completing each square, remove all the notes with that value on the 3x3, 1x9 and 9x1 grids 
+        2. If in a 3x3 grid there is only one row/column with a certain number, remove it from the other 3x3 from the same row/column
+        3. If in a 3x3, 1x9, 9x1 grid there is a case where the size of a set is equal to the number of empty slots, remove the numbers from the other slots from 3x3 and 1x9/9x1 grids, depending on the case
+        4. If in a 3x3, 1x9, 9x1 grid there is a case where the size of a set is equal to the number of empty slots the numbers show up, remove the numbers from the other slots from 3x3 and 1x9/9x1 grids, depending on the case
 
 
 * The algorithm will keep running as long as there has been some modification done during the previous step (either a new square gets solved or some notes have been removed)
@@ -47,7 +47,6 @@ The results for each of the datasets, assuming the grids were added in a random 
 
 | No. of grids  | set 1 | set 2 | set 3 |
 |     :---:     |     :---:      |     :---:      |     :---:      |
-| ------------- | ------------- | ------------- | ------------- |
 |100 | 0.585s| 0.176s| 0.266s |
 |500 | 2.997s| 0.876s| 1.372s|
 | 1000| 6.053s| 1.736s| 2.75s|
@@ -65,3 +64,31 @@ The results for each of the datasets, assuming the grids were added in a random 
 |500000 |2913.3s |871.366s |1364.44s |
 |800000 |4659.17s |1394.55s |2187.0s |
 |1000000 |5823.8s |1745.38s | 2736.72s|
+
+Since the first dataset has more details regarding the difficulty levels of each grid, I decided to also test the performance of my algorithm against the most difficult 100000 grids. I have sorted the data in decreasing order of difficulty so that on each row, we will see the difficulty level
+
+|No. of grids |Set 1 | 
+|     :---:     |     :---:      |
+|100 | 1.022s|
+| 500| 5.331s|
+|1000 | 10.133s|
+|2000 |19.408s | 
+|4000 |36.588s |
+|5000 | 45.443s|
+|8000 | 70.233s|
+|10000 |86.341s |
+|20000 | 163.586s|
+| 40000|309.59s | 
+| 50000| 381.352s|
+|100000 |730.243s |
+
+As the number of grids increases, the ratio between the time required for a random order of grids and the set of hardest grids decreases, because more and more easier grids will also be featured in the dataset. It is worth noting that for the hardest 100 grids, the program needs around 1.022s, which suggests a speed of approximately 100 grids per second for the hardest grids. 
+
+### Conclusions
+
+1. On average, my sudoku solver algorithm is able to do ~291.03 grids per second, which means around ~0.00343 seconds for each grid on average
+2. The first set is the one which contains the hardest grids, followed by the third one and followed by the second one
+3. It is likely that the speed of the algorithm can be improved by optimizing the brute force part, by starting with a certain square with only two hints or by dealing with notes removal while implementing the brute force part as well.
+
+
+
