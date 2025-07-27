@@ -6,7 +6,7 @@ Sudoku is a logic-based combinatorial number-placement puzzle. In classic Sudoku
 
 ### Why did I create a Sudoku Solver?
 
-I have always been interested in logic puzzles and mathematical games and as I was playing sudoku with my girlfriend, I wanted to learn more about the strategies which can be used to solve more and more grids while being faster and I realized that it could be a good opportunity to end up implementing a solver using my favorite programming languages. 
+I have always been interested in logic puzzles and mathematical games and as I was playing sudoku with some of my friends, I wanted to learn more about the strategies which can be used to solve more and more grids while being faster and I realized that it could be a good opportunity to end up implementing a solver using my favorite programming languages. 
 
 ### How does the solver work?
 
